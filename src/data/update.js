@@ -11,7 +11,7 @@ const fs = require("fs")
       changelog: [...item.querySelectorAll("ul > li")].map(item => item.innerHTML)
     }))))
 
-    fs.writeFileSync("./TestedDevice.json", JSON.stringify([...dom.querySelectorAll("#testedDevicesList tr")].map(item => ({
+    fs.writeFileSync("./devicesTested.json", JSON.stringify([...dom.querySelectorAll("#testedDevicesList tr")].map(item => ({
       nameDevice: item.children[0].textContent,
       iOSVersion: item.children[1].textContent
     }))))

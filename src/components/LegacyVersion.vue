@@ -5,17 +5,17 @@
     </template>
     <div class="legacy-version-view">
       <ul class="list">
-        <li v-for="i in 10">
+        <li v-for="item in items">
           <div class="item">
             <div class="header">
               <div class="name">
-                <p class="$1"> v1.0.0 </p>
-                <p class="$2"> 2/2/2020 </p>
+                <p class="$1"> {{ item.name }} </p>
+                <p class="$2"> {{ item.date }} </p>
               </div>
-              <button class="button"> Download </button>
+              <a :href="item.url" class="button"> Download </a>
             </div>
             <ul>
-              <li> Fix support for removing leftover files from RootLessJB </li>
+              <li v-for="log in item.changelog" v-html="log"></li>
             </ul>
           </div>
         </li>
@@ -26,7 +26,10 @@
 <script>
   import AppCollapse from "./AppCollapse"
   export default {
-    components: { AppCollapse }
+    components: { AppCollapse },
+    data: () => ({
+      items: require("@/data/LegacyVersions.json")
+    })
   }
 </script>
 <style lang="scss" scoped>

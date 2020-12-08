@@ -1,4 +1,4 @@
-# AltStore
+## AltStore
 
 1.  Install iTunes (Win32 Not UWP)
     *   [64 Bit Download](https://www.apple.com/itunes/download/win64)
@@ -17,7 +17,7 @@
 13.  AltStore will now install the app. Wait until it finishes.
 14.  Open unc0ver and jail​break!
 
-# Cydia Impactor
+## Cydia Impactor
 
 1.  Note: This method requires an Apple developer account.
 2.  Install iTunes (Win32 Not UWP)

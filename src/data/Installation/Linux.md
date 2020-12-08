@@ -1,4 +1,4 @@
-# Cydia Impactor
+## Cydia Impactor
 
 1.  Note: This method requires an Apple developer account.
 2.  Download [Cydia Impactor](http://www.cydiaimpactor.com/) for the applicable OS.

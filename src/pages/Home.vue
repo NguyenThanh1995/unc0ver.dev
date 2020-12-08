@@ -82,7 +82,7 @@
       </u-animate>
       <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
         <div class="installtion">
-          <h2 class="title"> Installtion Guide </h2>
+          <h2 class="title"> Installation Guide </h2>
           <app-tabs>
             <template #tabs="{ click, value }">
               <span @click="click(0)"> iOS </span>
@@ -91,14 +91,7 @@
               <span @click="click(3)"> Linux </span>
             </template>
             <template #inners="{ value }">
-              <div class="tab-inner" v-show="value == i - 1" key="i - 1" v-for="i in 4">
-                <h2> iOS </h2>
-                <ol>
-                  <li>
-                    Download AltStore. Use the link for your operating system.
-                  </li>
-                </ol>
-              </div>
+              <div class="tab-inner" v-show="value == i - 1" v-for="item in installation" v-html="item"></div>
             </template>
           </app-tabs>
         </div>
@@ -199,10 +192,10 @@
             <p class="btn-view-tested" @click="toggle"> {{ status ? "Hide" : "View" }} Devices Tested </p>
           </template>
           <ul class="list-viewer">
-            <li v-for="i in 10">
+            <li v-for="item in $options.devicesTested">
               <div class="item">
-                <span> iPhone 11 Pro Max </span>
-                <span> 13.5.5 Beta 1 </span>
+                <span> {{ item.deviceName }} </span>
+                <span> {{ item.iOSVersion }} </span>
               </div>
             </li>
           </ul>
@@ -768,11 +761,22 @@
   import LegacyVersion from "@/components/LegacyVersion"
   import AppCollapse from "@/components/AppCollapse"
   import AppTabs from "@/components/AppTabs"
+  import mdToHtml from "markdown-to-html-converter"
+  
   export default {
+    devicesTested: require("@/data/devicesTested.json"),
     components: {
       LegacyVersion,
       AppCollapse,
       AppTabs
-    }
+    },
+    data: () => ({
+      installation: [
+        mdToHtml(require("@/data/Installation/iOS.md")),
+        mdToHtml(require("@/data/Installation/macOS.md")),
+        mdToHtml(require("@/data/Installation/Windows.md")),
+        mdToHtml(require("@/data/Installation/Linux.md"))
+      ]
+    })
   }
 </script>
