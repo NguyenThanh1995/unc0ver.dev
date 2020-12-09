@@ -4,8 +4,8 @@
       <span class="logo item">u0</span>
       <a href="#" v-scroll-to="'#Download'" class="item"> Download </a>
       <a href="#" v-scroll-to="'#Credits'" class="item"> Credits </a>
-      <a href="#" class="item"> tvOS </a>
-      <svg width="30" height="30" viewBox="0 0 48 48" class="item mx-5px" fill="currentColor">
+      <slot name="default"/>
+      <svg width="30" height="30" viewBox="0 0 48 48" class="item mx-5px" fill="currentColor" @click="$store.commit('toggleDarkMode')">
         <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22 3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"></path>
       </svg>
     </u-animate>
@@ -35,7 +35,7 @@
     transition: background-color .25s;
 
     &.active {
-      background-color: rgb(30, 30, 30);
+      background-color: $bg-dark2;
     }
 
     .inner {
@@ -71,7 +71,7 @@
         //margin-right: 5px;
       }
 
-      .item {
+      & >>> .item {
         &:not(.logo) {
           text-shadow: rgba(0, 0, 0, 0.55) 10px 10px 15px, rgba(0, 0, 0, 0.25) -10px -10px 15px;
         }

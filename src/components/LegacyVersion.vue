@@ -43,7 +43,7 @@
 
       .item {
         color: $color-white-65;
-        border-bottom: 1px solid rgba(255, 255, 255, .075);
+        border-bottom: 1px solid $color-white-075;
         margin: 0 auto;
         padding: 10px 0;
         position: relative;

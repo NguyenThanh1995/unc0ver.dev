@@ -1,14 +1,41 @@
 <template>
   <div id="app">
-    <app-header />
     <router-view />
+    <component is="style" v-if="$store.state.isDarkMode">
+      :root {
+        --color-secondary: rgb(255, 255, 255, .15);
+        --color-primary: rgb(1, 112, 225);
+        --color-white: #fff;
+        --color-white-65: rgba(255, 255, 255, .65);
+        --color-primary: rgb(1, 112, 255);
+        --color-white-075: rgba(255, 255, 255, .075);
+        --color-white-15: rgba(255, 255, 255, .15);
+        --brightness-lighter: .4;
+        --brightness: .25;
+        --bg-dark: rgb(22, 22, 22);
+        --bg-dark2: rgb(30, 30, 30);
+      }
+    </component>
+    <component is="style" v-else>
+      :root {
+        --color-secondary: rgb(0, 0, 0, .15);
+        --color-primary: rgb(1, 112, 225);
+        --color-white: #000;
+        --color-white-65: rgba(0, 0, 0, .65);
+        --color-primary: rgb(1, 112, 255);
+        --color-white-075: rgba(0, 0, 0, .075);
+        --color-white-15: rgba(0, 0, 0, .15);
+        --brightness-lighter: 2.8;
+        --brightness: 1.1;
+        --bg-dark: rgb(248, 249, 250);
+        --bg-dark2: #fff;
+      }
+    </component> 
   </div>
 </template>
 <script>
-  import AppHeader from "@/components/AppHeader"
   export default {
-    name: "app",
-    components: { AppHeader }
+    name: "app"
   }
 </script>
 <style lang="scss">
@@ -39,11 +66,13 @@
   }
 
   body {
-    background-color: rgb(22, 22, 22);
+    background-color: $bg-dark;
   }
+
   #app {
     min-height: 100%;
   }
+
   a {
     text-decoration: none;
   }

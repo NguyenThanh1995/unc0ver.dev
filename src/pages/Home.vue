@@ -1,5 +1,8 @@
 <template>
   <u-animate-container class="container">
+    <app-header>
+      <router-link to="/tvos" class="item"> tvOS </router-link>
+    </app-header>
     <div class="background"></div>
     <div class="background background-blur"></div>
     <u-animate name="animate__fadeInDown" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false" id="Download">
@@ -262,7 +265,7 @@
         </app-collapse>
       </div>
     </u-animate>
-    <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false" id="Credits" >
+    <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false" id="Credits">
       <div class="credits">
         <h2 class="title">
           Credits:
@@ -317,7 +320,7 @@
         size: cover;
       }
 
-      filter: brightness(.4);
+      filter: brightness($brightness-lighter);
       min-height: 90vh;
       min-width: 100%;
       position: absolute;
@@ -326,7 +329,7 @@
       z-index: -1;
 
       &.background-blur {
-        filter: blur(10px) brightness(0.25);
+        filter: blur(10px) brightness($brightness);
         height: 100%;
         z-index: -2;
       }
@@ -391,7 +394,7 @@
       }
 
       .progress {
-        background-color: rgba(255, 255, 255, .15);
+        background-color: $color-white-15;
         border-radius: 100px;
         margin-bottom: 60px;
         margin-left: auto;
@@ -424,7 +427,7 @@
       display: block;
       border: 0;
       outline: none;
-      color: $color-white;
+      color: #fff;
       font-weight: 600;
       font-size: 16px;
       padding: 20px;
@@ -654,7 +657,7 @@
 
         .item {
           padding: 8px;
-          border-bottom: 2px solid rgba(255, 255, 255, .15);
+          border-bottom: 2px solid $color-white-15;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -729,7 +732,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          border-bottom: 1px solid rgba(255, 255, 255, .075);
+          border-bottom: 1px solid $color-white-075;
 
           &:hover .avatar {
 
@@ -785,6 +788,7 @@
   import LegacyVersion from "@/components/LegacyVersion"
   import AppCollapse from "@/components/AppCollapse"
   import AppTabs from "@/components/AppTabs"
+  import AppHeader from "@/components/AppHeader"
 
   export default {
     devicesTested: require("@/data/devicesTested.json"),
@@ -794,7 +798,8 @@
     components: {
       LegacyVersion,
       AppCollapse,
-      AppTabs
+      AppTabs,
+      AppHeader
     },
     data: () => ({
       installation: [

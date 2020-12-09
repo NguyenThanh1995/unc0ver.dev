@@ -10,6 +10,10 @@ export default new Router({
     {
       path: "/",
       component: () => import("@/pages/Home")
+    },
+    {
+      path: "/tvos",
+      component: () => import("@/pages/tvOS")
     }
   ]
 });
