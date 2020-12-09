@@ -11,9 +11,12 @@
 </template>
 <script>
   export default {
-    data: () => ({
-      value: 0
-    }),
+    props: {
+      default: Number
+    },
+    data() {
+      return { value: this.default }
+    },
     methods: {
       eventClick(value) {
         this.value = value

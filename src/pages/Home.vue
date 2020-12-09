@@ -83,7 +83,7 @@
       <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
         <div class="installtion">
           <h2 class="title"> Installation Guide </h2>
-          <app-tabs>
+          <app-tabs :default="1">
             <template #tabs="{ click, value }">
               <span @click="click(0)"> iOS </span>
               <span @click="click(1)"> MacOS </span>
@@ -91,7 +91,7 @@
               <span @click="click(3)"> Linux </span>
             </template>
             <template #inners="{ value }">
-              <div class="tab-inner" v-show="value == i - 1" v-for="item in installation" v-html="item"></div>
+              <div class="tab-inner" v-show="value == index" v-for="(item, index) in installation" v-html="item"></div>
             </template>
           </app-tabs>
         </div>
@@ -163,14 +163,14 @@
         </u-animate>
         <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
           <div class="item">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width=80 height=80>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width=80 height=80 class="lock">
               <g>
                 <path d="M391.1,484.7H120.9c-19.8,0-36-16.2-36-36V263.4c0-19.8,16.2-36,36-36h270.2c19.8,0,36,16.2,36,36v185.3
                             C427.1,468.5,410.9,484.7,391.1,484.7z" />
                 <path d="M148.1,227.4v-92.3c0-59.6,48.3-107.9,107.9-107.9s107.9,48.3,107.9,107.9v92.3" />
               </g>
-              <g stroke="#fff">
-                <circle class="lockInner" cx="256" cy="322.1" r="32.2" fill="#fff" />
+              <g>
+                <circle class="lockInner" cx="256" cy="322.1" r="32.2" />
                 <path class="lockInner" d="M256,422.3L256,422.3c-4,0-7.3-3.3-7.3-7.3v-53.4c0-4,3.3-7.3,7.3-7.3l0,0c4,0,7.3,3.3,7.3,7.3V415
                             C263.3,419,260,422.3,256,422.3z" />
               </g>
@@ -194,7 +194,7 @@
           <ul class="list-viewer">
             <li v-for="item in $options.devicesTested">
               <div class="item">
-                <span> {{ item.deviceName }} </span>
+                <span> {{ item.nameDevice }} </span>
                 <span> {{ item.iOSVersion }} </span>
               </div>
             </li>
@@ -205,8 +205,25 @@
     <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
       <div class="what-news">
         <h2 class="title"> What's News: </h2>
-        <ul class="list">
-          <li> Fix support for removing leftover files from RootLessJB </li>
+        <p v-if="!changelog">
+          Loading...
+        </p>
+        <ul class="list" v-else>
+          <!--
+          <li v-for="log in changelog">
+            <div class="item">
+              <h2 class="title">
+                {{ item.tag_name }} ~ {{ item.name }}
+              </h2>
+              <h3 class="subtitle">
+                {{ item.published_at }} 
+              </h3>
+              <p> {{ item.body }} </p>
+            </div>
+          </li>-->
+          <li>
+            {{ changelog[0].body }}
+          </li>
         </ul>
       </div>
     </u-animate>
@@ -229,13 +246,13 @@
     <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
       <div class="redeb">
         <h2 class="title"> Sponsored by PhoneRebel </h2>
-        <img src="https://unc0ver.dev/img/phonerebel.png" />
+        <img :src="require('@/assets/phonerebel.png')" />
         <h3 class="subtitle"> Phone Rebel Cases </h3>
         <p> Extreme durability, magnet utility, naked feel - The most over engineered iPhone Case. </p>
         <app-collapse>
           <ul class="list">
-            <li v-for="i in 5">
-              Real Armaid Fiber Weave
+            <li v-for="item in $options.rebelMore">
+              {{ item }}
             </li>
           </ul>
           <button class="button"> See Redeb Case </button>
@@ -251,14 +268,14 @@
           Credits:
         </h2>
         <ul class="list">
-          <li v-for="i in 5">
-            <div class="item">
-              <img class="avatar" src="https://unc0ver.dev/img/twitter/pwn20wnd.jpg" />
+          <li v-for="item in $options.credits">
+            <a :href="item.url" class="item">
+              <img class="avatar" :src="item.avatar" />
               <div class="info">
-                <span class="name"> Pwd </span>
-                <span class="type"> Developer </span>
+                <span class="name"> {{ item.name }} </span>
+                <span class="type"> {{ item.type }} </span>
               </div>
-              <span>
+              <span v-if="item.isTwitter">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve" class="devSocialIcon" width=20 height=20 fill="currentColor">
                   <path class="st0" d="M300,57c-11,4.9-22.9,8.2-35.3,9.7c12.7-7.6,22.5-19.7,27.1-34.1c-11.9,7.1-25.1,12.2-39.1,14.9
                             c-11.2-12-27.2-19.4-44.9-19.4c-34,0-61.5,27.6-61.5,61.5c0,4.8,0.5,9.5,1.6,14c-51.2-2.6-96.5-27.1-126.9-64.3
@@ -268,101 +285,22 @@
                             C281.3,80.1,291.7,69.3,300,57L300,57z" />
                 </svg>
               </span>
-            </div>
+            </a>
           </li>
         </ul>
         <div class="footer">
-          Site developted with <img width="1em" height="1em" src="https://unc0ver.dev/img/heart.svg" /> by <a href="#"> PINPAL </a>
+          Site developted with <img width="1em" height="1em" :src="require('@/assets/heart.svg')" /> by <a href="#"> PINPAL </a>
           <p>
             <a href="#"> Privacy Policy </a>
             |
             <a href="#"> Contact Us </a>
           </p>
-          iOS 13.3.2
+          <small> {{ iOSVersion }} </small>
         </div>
       </div>
     </u-animate>
   </u-animate-container>
 </template>
-<style lang="scss" scoped>
-  %title-large {
-    margin-bottom: 20px;
-    font-size: 32px;
-    text-align: center;
-    margin: 100px auto 50px 0;
-  }
-
-  .container {
-    .credits {
-      .title {
-        @extend %title-large;
-      }
-
-      .list {
-        margin: 0;
-        padding: 0 15px;
-        list-style: none;
-
-        .item {
-          color: rgb(255, 255, 255);
-          padding: 10px 0;
-          overflow: hidden;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-bottom: 1px solid rgba(255, 255, 255, .075);
-
-          &:hover .avatar {
-
-            filter: brightness(.3);
-          }
-
-          .avatar {
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            transition: filter .15s;
-          }
-
-          .info {
-            vertical-align: baseline;
-            padding: 10px 15px;
-
-            .name {
-              display: block;
-              font-size: 14pt;
-            }
-
-            .type {
-              color: rgba(255, 255, 255, .65);
-              font-size: 15pt;
-              display: block;
-            }
-
-            width: calc(100% - 40px)
-          }
-        }
-      }
-
-      .footer {
-        margin: 100px 0 30px 0;
-        text-align: center;
-        color: rgba(255, 255, 255, .65);
-
-        a {
-          color: $color-primary;
-          text-decoration: none;
-        }
-
-        p {
-          margin-top: (1.2rem + 2/16);
-          margin-bottom: .2rem;
-        }
-      }
-    }
-  }
-</style>
 <style lang="scss" scoped>
   %title-large {
     margin-bottom: 20px;
@@ -374,7 +312,7 @@
   .container {
     .background {
       background: {
-        image: url(https://unc0ver.dev/img/bg.png);
+        image: url(~@/assets/bg.png);
         position: center;
         size: cover;
       }
@@ -402,12 +340,12 @@
 
     position: relative;
     width: 100%;
-    color: #fff;
+    color: $color-white;
 
     .logo {
       font-family: "Chocolate";
       font-size: 90pt;
-      color: #fff;
+      color: $color-white;
       text-align: center;
 
       @media (max-width: $mobile) {
@@ -419,7 +357,7 @@
 
     .sub-title {
       font-size: 1rem;
-      color: #fff;
+      color: $color-white;
       text-align: center;
 
       p {
@@ -471,7 +409,7 @@
           top: 0;
           height: 100%;
           width: 50%;
-          background-color: rgb(1, 122, 255);
+          background-color: $bg-primary;
           transition: width 1.15s ease;
           transition-delay: .5s;
         }
@@ -480,13 +418,13 @@
     }
 
     &>>>.button {
-      background-color: rgb(1, 112, 255);
+      background-color: $bg-primary;
       border-radius: 100px;
       margin: 15px auto 60px auto;
       display: block;
       border: 0;
       outline: none;
-      color: #fff;
+      color: $color-white;
       font-weight: 600;
       font-size: 16px;
       padding: 20px;
@@ -519,7 +457,7 @@
 
     .download-alt-store {
       margin-bottom: 40px;
-      color: #fff;
+      color: $color-white;
       text-align: center;
     }
 
@@ -528,7 +466,7 @@
       text-align: center;
 
       a {
-        color: #fff;
+        color: $color-white;
         padding-right: 30px;
 
         &:last-child {
@@ -538,7 +476,7 @@
     }
 
     .legacy-version {
-      color: rgba(255, 255, 255, .65);
+      color: $color-white-65;
       transition: opacity .15s ease;
       text-align: center;
 
@@ -568,7 +506,7 @@
       }
 
       .btn-viewer-redeb {
-        color: rgba(255, 255, 255, .65);
+        color: $color-white-65;
         padding-top: 20px;
         transition: transform .15s;
 
@@ -579,7 +517,7 @@
 
       .list {
         margin: 20px auto;
-        color: rgba(255, 255, 255, .65);
+        color: $color-white-65;
         font-size: 12pt;
         padding: 0;
         text-align: center;
@@ -626,15 +564,19 @@
         }
 
         .tab-inner {
-          h2 {
+          &>>>h2 {
             margin-bottom: 20px;
             margin-top: 20px;
             font-size: 16pt;
           }
 
-          ol {
+          &>>>ol {
             padding-left: 40px;
             text-align: left;
+          }
+
+          &>>>a {
+            color: $color-primary;
           }
         }
 
@@ -659,6 +601,17 @@
 
           svg {
             margin-bottom: 20px;
+
+            &.lock {
+              stroke: currentColor;
+              fill: none;
+              stroke-width: 32;
+
+              .lockInner {
+                fill: currentColor;
+                stroke-width: 10;
+              }
+            }
           }
 
           h2 {
@@ -683,7 +636,7 @@
       }
 
       .btn-view-tested {
-        color: rgba(255, 255, 255, .65);
+        color: $color-white-65;
         transition: opacity .15s;
         text-align: center;
         margin-top: 16px;
@@ -755,16 +708,89 @@
         }
       }
     }
+
+
+
+    .credits {
+      .title {
+        @extend %title-large;
+      }
+
+      .list {
+        margin: 0;
+        padding: 0 15px;
+        list-style: none;
+
+        .item {
+          color: $color-white;
+          padding: 10px 0;
+          overflow: hidden;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(255, 255, 255, .075);
+
+          &:hover .avatar {
+
+            filter: brightness(.3);
+          }
+
+          .avatar {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            transition: filter .15s;
+          }
+
+          .info {
+            vertical-align: baseline;
+            padding: 10px 15px;
+
+            .name {
+              display: block;
+              font-size: 14pt;
+            }
+
+            .type {
+              color: $color-white-65;
+              font-size: 15pt;
+              display: block;
+            }
+
+            width: calc(100% - 40px)
+          }
+        }
+      }
+
+      .footer {
+        margin: 100px 0 30px 0;
+        text-align: center;
+        color: $color-white-65;
+
+        a {
+          color: $color-primary;
+          text-decoration: none;
+        }
+
+        p {
+          margin-top: (1.2rem + 2/16);
+          margin-bottom: .2rem;
+        }
+      }
+    }
   }
 </style>
 <script>
   import LegacyVersion from "@/components/LegacyVersion"
   import AppCollapse from "@/components/AppCollapse"
   import AppTabs from "@/components/AppTabs"
-  import mdToHtml from "markdown-to-html-converter"
-  
+
   export default {
     devicesTested: require("@/data/devicesTested.json"),
+    rebelMore: require("@/data/rebelMore.json"),
+    credits: require("@/data/credits.json"),
+
     components: {
       LegacyVersion,
       AppCollapse,
@@ -772,11 +798,15 @@
     },
     data: () => ({
       installation: [
-        mdToHtml(require("@/data/Installation/iOS.md")),
-        mdToHtml(require("@/data/Installation/macOS.md")),
-        mdToHtml(require("@/data/Installation/Windows.md")),
-        mdToHtml(require("@/data/Installation/Linux.md"))
-      ]
-    })
+        require("@/data/Installation/iOS.md"),
+        require("@/data/Installation/macOS.md"),
+        require("@/data/Installation/Windows.md"),
+        require("@/data/Installation/Linux.md")
+      ],
+      changelog: null
+    }),
+    async beforeCreate() {
+      this.changelog = await fetch("https://cors-anywhere.herokuapp.com/https://unc0ver.dev/releases.json").then(e => e.json())
+    }
   }
 </script>

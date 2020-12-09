@@ -77,7 +77,7 @@
         }
 
         text-decoration: none;
-        color: #fff;
+        color: $color-white;
 
         &:not(svg) {
           padding: {

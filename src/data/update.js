@@ -16,7 +16,7 @@ const fs = require("fs")
       iOSVersion: item.children[1].textContent
     }))))
 
-
+    fs.writeFileSync("./rebelMore.json", JSON.stringify([...dom.querySelectorAll("#rebelMore li")].map(e => e.innerHTML)))
 
     console.log(" Done ")
 

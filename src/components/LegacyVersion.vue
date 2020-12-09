@@ -42,7 +42,7 @@
       list-style: none;
 
       .item {
-        color: rgba(255, 255, 255, .65);
+        color: $color-white-65;
         border-bottom: 1px solid rgba(255, 255, 255, .075);
         margin: 0 auto;
         padding: 10px 0;
@@ -59,7 +59,7 @@
 
           .name {
             .\$1 {
-              color: #fff;
+              color: $color-white;
               font-weight: 600;
               font-size: 16pt;
             }

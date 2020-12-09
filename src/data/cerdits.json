@@ -1,0 +1,72 @@
+[
+  {
+    "name": "pwn20wnd",
+    "avatar": "https://pbs.twimg.com/profile_images/893831521659912193/5JzdY1p9.jpg",
+    "type": "Lead Developer",
+    "url": "https://twitter.com/pwn20wnd",
+    "isTwitter": true
+  },
+  {
+    "name": "Sam Bingner",
+    "avatar": "https://pbs.twimg.com/profile_images/1091106820/image.jpg",
+    "type": "Developer",
+    "url": "https://twitter.com/sbingner",
+    "isTwitter": true
+  },
+  {
+    "name": "Siguza",
+    "avatar": "https://pbs.twimg.com/profile_images/3451304290/1420c117451a3e79fee19ec50d6d79d7.png",
+    "type": "Developer",
+    "url": "https://twitter.com/s1guza",
+    "isTwitter": true
+  },
+  {
+    "name": "Jake James",
+    "avatar": "https://pbs.twimg.com/profile_images/936713472628289536/qBfbF_I8.jpg",
+    "type": "Developer",
+    "url": "https://twitter.com/Jakeashacks",
+    "isTwitter": true
+  },
+  {
+    "name": "Ubik",
+    "avatar": "https://pbs.twimg.com/profile_images/1014831422320861184/uECK44W6.jpg",
+    "type": "Designer",
+    "url": "https://twitter.com/himynameisubik",
+    "isTwitter": true
+  },
+  {
+    "name": "Dennis D. Bednarz",
+    "avatar": "https://pbs.twimg.com/profile_images/1151473660261294080/O37xifTc.jpg",
+    "type": "Logo Designer",
+    "url": "https://twitter.com/DennisBednarz",
+    "isTwitter": true
+  },
+  {
+    "name": "exDeveloper",
+    "avatar": "https://pbs.twimg.com/profile_images/1148460896483717121/11N4FTYu.jpg",
+    "type": "UI Dev",
+    "url": "https://twitter.com/ios_app_dev",
+    "isTwitter": true
+  },
+  {
+    "name": "PhoneRebel",
+    "avatar": "https://pbs.twimg.com/profile_images/1249072158640205824/-uMTPG4C.jpg",
+    "type": "Sponsorship",
+    "url": "https://phonerebel.com/",
+    "isTwitter": false
+  },
+  {
+    "name": "Brandon Azad",
+    "avatar": "https://pbs.twimg.com/profile_images/988185556218626048/EUPYCUO7.jpg",
+    "type": "Timestamp Bug",
+    "url": "https://twitter.com/_bazad",
+    "isTwitter": true
+  },
+  {
+    "name": "Ned Williamson",
+    "avatar": "https://pbs.twimg.com/profile_images/737415890594082816/dIaU5qfc.jpg",
+    "type": "Soket Bug",
+    "url": "https://twitter.com/NedWilliamson",
+    "isTwitter": true
+  }
+]

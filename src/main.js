@@ -10,11 +10,10 @@ import "./scss/animate-lite.scss"
 
 Vue.use(Wow)
 
-Vue.directive("scroll-show", {
-  bind() {
-    
-  }
-})
+const match = (navigator.appVersion).split("OS ")
+
+Vue.prototype.iOSVersion = match && match.length > 1 ? match[1].split(" ")[0].replace("_", ".") : ""
+
 
 new Vue({
   el: "#app",
