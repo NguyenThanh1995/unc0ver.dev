@@ -2,7 +2,7 @@
   <u-animate-container class="container">
     <div class="background"></div>
     <div class="background background-blur"></div>
-    <u-animate name="animate__fadeInDown" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
+    <u-animate name="animate__fadeInDown" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false" id="Download">
       <h1 class="logo"> unc0ver </h1>
     </u-animate>
     <u-animate name="animate__lightSpeedInLeft" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
@@ -262,7 +262,7 @@
         </app-collapse>
       </div>
     </u-animate>
-    <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false">
+    <u-animate name="animate__fadeIn" delay="0s" duration="0.8s" :iteration="1" :offset="0" animateClass="animate__animated" :begin="false" id="Credits" >
       <div class="credits">
         <h2 class="title">
           Credits:
